@@ -1,5 +1,8 @@
 package annotation.controller;
 
+import annotation.dao.UserDao;
+import annotation.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 /**
@@ -12,4 +15,13 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class UserController {
+
+    //自动装配 注解
+    @Autowired
+    private UserService userService;    //调用接口；实现解耦
+
+   public void register(){
+       userService.handAddUser();
+   }
 }
+

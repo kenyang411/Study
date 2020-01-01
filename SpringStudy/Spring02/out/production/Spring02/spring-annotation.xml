@@ -7,6 +7,15 @@
     <!-- 组件扫描：扫描加了注解的类，并管理到IOC容器中
         base-package:基包。Spring会扫描指定包以及子包下所有的类，将带有注解的类管理到IOC容器中
      -->
-    <context:component-scan base-package="annotation"></context:component-scan>
+    <context:component-scan base-package="annotation"> <!-- 如果使用指定扫描，要关闭默认扫描。use-default-filters="false" -->
+        <!-- 1.指定扫描 -->
+<!--        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+        <!-- type=assignable时，可以指定全类名 -->
+<!--        <context:include-filter type="assignable" expression="annotation.controller.UserController"/>-->
+
+
+        <!-- 2.排除扫描 use-default-filters="true" 默认是true所以可以直接不写 -->
+<!--        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>-->
+    </context:component-scan>
 
 </beans>

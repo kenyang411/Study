@@ -16,6 +16,7 @@ public class testAnnotation {
         UserController uc=ctx.getBean("userController",UserController.class);
         System.out.println("userController:"+uc);
 
+        uc.register();      //自动装配
 
         UserService uService=ctx.getBean("userServiceImpl",UserServiceImpl.class);
         System.out.println("userService:"+uService);
@@ -23,4 +24,5 @@ public class testAnnotation {
         UserDao uDao=ctx.getBean("userDaoImpl",UserDaoImpl.class);
         System.out.println("userDao:"+uDao);
     }
+
 }

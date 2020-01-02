@@ -18,11 +18,11 @@ public class testAnnotation {
 
         uc.register();      //自动装配
 
-        UserService uService=ctx.getBean("userServiceImpl",UserServiceImpl.class);
-        System.out.println("userService:"+uService);
-
-        UserDao uDao=ctx.getBean("userDaoImpl",UserDaoImpl.class);
-        System.out.println("userDao:"+uDao);
+//        UserService uService=ctx.getBean("userServiceImpl",UserServiceImpl.class);
+//        System.out.println("userService:"+uService);
+//
+//        UserDao uDao=ctx.getBean("userDaoImpl",UserDaoImpl.class);
+//        System.out.println("userDao:"+uDao);
     }
 
 }

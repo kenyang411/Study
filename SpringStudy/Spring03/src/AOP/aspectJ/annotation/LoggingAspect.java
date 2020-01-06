@@ -3,6 +3,7 @@ package AOP.aspectJ.annotation;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Array;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 
 @Component  //先标识为一个组件
 @Aspect     //标识为一个切面
+@Order(2)
 public class LoggingAspect {
 
     /**
@@ -71,26 +73,26 @@ public class LoggingAspect {
 
     }
 
-    /**
-     * 环绕通知：环绕着目标方法执行。可以理解为是前置 后置 返回 异常 通知的结合体，更新是动态代理的整个过程。
-     *
-     * 环绕通知和前面几个不同时使用。
-     */
-    @Around(value = "execution(* AOP.aspectJ.annotation.*.*(..))")
-    public Object aroundMethod(ProceedingJoinPoint pjp) {
-        //执行目标方法
-        try {
-            //前置
-            Object result = pjp.proceed();
-            //返回
-            return result;
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }finally {
-            //后置
-        }
-        return null;
-    }
+//    /**
+//     * 环绕通知：环绕着目标方法执行。可以理解为是前置 后置 返回 异常 通知的结合体，更新是动态代理的整个过程。
+//     *
+//     * 环绕通知和前面几个不同时使用。
+//     */
+//    @Around(value = "execution(* AOP.aspectJ.annotation.*.*(..))")
+//    public Object aroundMethod(ProceedingJoinPoint pjp) {
+//        //执行目标方法
+//        try {
+//            //前置
+//            Object result = pjp.proceed();
+//            //返回
+//            return result;
+//        } catch (Throwable e) {
+//            e.printStackTrace();
+//        }finally {
+//            //后置
+//        }
+//        return null;
+//    }
 
 }
 

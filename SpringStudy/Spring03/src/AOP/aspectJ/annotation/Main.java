@@ -10,5 +10,8 @@ public class Main {
         ArithmeticCalaulator ac= ctx.getBean("arithmeticCalculatorImpl",ArithmeticCalaulator.class);
         int result=ac.add(1,2);
         System.out.println("Main Result:"+ result);
+
+        result=ac.div(10,0);
+        System.out.println("Main Result: "+ result);
     }
 }

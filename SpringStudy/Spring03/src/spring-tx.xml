@@ -37,5 +37,5 @@
         transaction-manager 用来指定事务管理器，如果事务管理器的id值是transactionManager,
                             可以省略不进行指定。
      -->
-    <tx:annotation-driven transaction-manager="dataSourceTransactionManager"/>
+    <tx:annotation-driven  transaction-manager="dataSourceTransactionManager"/>
 </beans>

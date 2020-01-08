@@ -58,12 +58,12 @@ public class TestJdbc {
      * 2.查询单值，返回单个值
      */
     @Test
-    public void testqueryForObjectReturnObject(int Id) {
+    public void testqueryForObjectReturnObject() {
         String sql = " select id,last_name,email,gender from employee where id=? ";
         //rowMapper:行映射，将结果集的一条数据映射成具体的一个java对象
         RowMapper<Employee> rowMapper = new BeanPropertyRowMapper<>(Employee.class);
 
-        Employee employee = jdbcTemplate.queryForObject(sql, rowMapper, Id);
+        Employee employee = jdbcTemplate.queryForObject(sql, rowMapper, 1);
         System.out.println(employee);
     }
 

@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>请求成功2333</title>
+    <title>hello</title>
 </head>
 <body>
-
+<p>请求成功2333</p>
 </body>
 </html>

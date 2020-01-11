@@ -10,6 +10,21 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+    <!-- 配置REST 过滤器 HiddenHttpMethodFilter -->
+    <filter>
+        <filter-name>HiddenHttpMethodFilter</filter-name>
+        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HiddenHttpMethodFilter</filter-name>
+        <!--
+        所有请求都过滤 '/*'
+        -->
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
     <!-- SpringMVC的前端控制器:DispatcherServlet  -->
     <servlet>
         <servlet-name>dispatcher</servlet-name>

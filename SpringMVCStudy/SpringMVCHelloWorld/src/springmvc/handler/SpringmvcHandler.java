@@ -2,17 +2,85 @@ package springmvc.handler;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.RequestContext;
 
-import javax.sound.midi.Soundbank;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 
 @Controller
 @RequestMapping("test")
 public class SpringmvcHandler {
 
     /**
-     * REST PUT
+     * 测试原生的Servlet API
+     */
+    @RequestMapping("/testServletAPI")
+    public void testServletAPI(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("Request:" + request);       //转发
+        System.out.println("Response:" + response);     //重定向 将数据写给客户端
+
+        //转发
+        //request.getRequestDispatcher("/WEB-INF/view/success.jsp").forward(request,response);
+
+        //重定向
+        //response.sendRedirect("http://www.baidu.com");
+
+        //将数据写给客户端
+        response.getWriter().println("response data");
+    }
+
+
+    /**
+     * POJO
      *
+     * @return
+     */
+    @RequestMapping("testPOJO")
+    public String testPOJO(User user) {
+        System.out.println("POJO:" + user);
+        return "success";
+    }
+
+    /**
+     * @RequestCookie
+     */
+    @RequestMapping("testCookieValue")
+    public String testCookieValue(@CookieValue("JSESSIONID") String cookieValue) {
+        System.out.println("CookieValue:" + cookieValue);
+        return "testRequest";
+    }
+
+
+    /**
+     * @RequestHeader 映射请求头信息到请求处理方法的形参中
+     */
+    @RequestMapping("testRequestHeader")
+    public String testRequestHeader(@RequestHeader("Accept-Language") String acceptlanguage) {
+        System.out.println("acceptLanguage" + acceptlanguage);
+        return "success";
+    }
+
+
+    /**
+     * @RequestParam 映射请求参数到请求处理方法的形参
+     * 1.如果请求参数名与形参名一致，则可以省略@RequestParam的指定。
+     * 2.@RequestParam 注解标注的形参必须要赋值。必须要能从请求对象中获取到对应的请求参数。
+     * 可以使用required来设置为不是必须的。
+     * 3.可以使用defaultValue来指定一个默认值取代 null
+     */
+    @RequestMapping(value = "testRequestParam")
+    public String testRequestParam(@RequestParam("username") String username, @RequestParam(value = "age", defaultValue = "0", required = false) Integer age) {
+        //web: request.getParameter()   request.getParameterMap()
+        System.out.println(username + "," + age);
+        return "testRequest";
+    }
+
+
+    /**
+     * REST PUT
+     * <p>
      * 消息 JSP 只允许 GET、POST 或 HEAD。Jasper 还允许 OPTIONS
      * 描述 请求行中接收的方法由源服务器知道，但目标资源不支持
      * 上面报错解决方法 ： @ResponseBody

@@ -12,6 +12,34 @@
 </head>
 <body>
 
+<a href="test/testServletAPI">Test Servlet API</a>
+<br />
+<form action="test/testPOJO" method="post">
+  用户名称：<input type="text" name="username" />
+  <br />
+  用户密码：<input type="password" name="password" />
+  <br />
+  用户邮箱: <input type="text" name="email" />
+  <br />
+  用户性别: 男 <input type="radio" value="1" name="gender" />
+           女 <input type="radio" name="gender" value="0" />
+  <br />
+  用户省份: <input type="text" name="address.province" />
+  <br />
+  用户城市: <input type="text" name="address.city" />
+  <br />
+  <input type="submit" value="注册" />
+</form>
+
+<br />
+<a href="test/testCookieValue">Test CookieValue</a>
+<br />
+<a href="test/testRequestHeader">Test Request Header</a>
+<br />
+
+<a href="test/testRequestParam?username=胡汉三&age=18">Test Request Param</a>
+<br />
+
 <!-- 修改一个订单 -->
 <form action="test/order" method="post">
   <input type="hidden" name="_method" value="PUT" />

@@ -11,6 +11,10 @@
     <title>$Title$</title>
 </head>
 <body>
+<a href="testModel">Test Model</a>
+<br />
+<a href="testMap">Test Map</a>
+<br />
 <a href="testModelAndView">Test Model And View</a>
 </body>
 </html>

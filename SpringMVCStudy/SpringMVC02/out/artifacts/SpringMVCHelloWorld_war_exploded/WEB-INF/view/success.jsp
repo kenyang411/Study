@@ -8,9 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>hello</title>
+    <title>hello Spring MVC</title>
 </head>
 <body>
 username:${requestScope.username}
+<br />
+passworld: ${requestScope.passworld}
+<br />
+loginMsg:${requestScope.loginMsg}
 </body>
 </html>

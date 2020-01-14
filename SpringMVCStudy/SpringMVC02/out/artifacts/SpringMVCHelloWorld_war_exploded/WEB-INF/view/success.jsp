@@ -11,6 +11,7 @@
     <title>hello Spring MVC</title>
 </head>
 <body>
+
 username:${requestScope.username}
 <br />
 passworld: ${requestScope.passworld}

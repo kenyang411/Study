@@ -2,10 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 1.组件扫描 -->
-<context:component-scan base-package="springmvc"></context:component-scan>
+    <context:component-scan base-package="springmvc"></context:component-scan>
 
     <!-- 2.视图解析器
            工作机制： prefix + 请求处理方法的返回值 + suffix = 物理视图路径
@@ -16,7 +17,13 @@
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/view/"></property>
         <property name="suffix" value=".jsp"></property>
+
+        <!-- 配置视图解析器的优先级 -->
+        <property name="order" value="100"></property>
     </bean>
 
+    <!-- 不经过Handler直接跳转页面 -->
+    <mvc:view-controller path="testViewController" view-name="success"></mvc:view-controller>
+    <!-- 使用view-controller以后，会导致RequestMapping的映射失效，因此需要加上annotation-driven的配置 -->
 
 </beans>

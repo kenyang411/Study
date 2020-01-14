@@ -11,6 +11,10 @@
     <title>$Title$</title>
 </head>
 <body>
+<a href="testViewController">Test ViewController</a>
+<br />
+<a href="testView">Test View</a>
+<br />
 <a href="testModel">Test Model</a>
 <br />
 <a href="testMap">Test Map</a>

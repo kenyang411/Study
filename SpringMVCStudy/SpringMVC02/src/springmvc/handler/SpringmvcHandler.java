@@ -12,24 +12,34 @@ import java.util.Map;
 public class SpringmvcHandler {
 
     /**
+     * View
+     */
+    @RequestMapping("/testView")
+    public String testView() {
+
+        return "success";
+    }
+
+
+    /**
      * Model
      */
     @RequestMapping("/testModel")
-    public String testModel(Model model){
+    public String testModel(Model model) {
 
-        model.addAttribute("loginMsg","用户名或者密码错误");
+        model.addAttribute("loginMsg", "用户名或者密码错误");
         return "success";
     }
 
     /**
      * Map
      * 猜测：SpringMVC会把Map中的模型数据放到request域对象中。
-     *      SpringMVC在调用完请求处理方法后，不管方法的返回值是什么类型。都会处理成一个ModelAndView对象。
+     * SpringMVC在调用完请求处理方法后，不管方法的返回值是什么类型。都会处理成一个ModelAndView对象。
      */
     @RequestMapping("testMap")
-    public String testMap(Map<String,Object> map){
+    public String testMap(Map<String, Object> map) {
         System.out.println(map.getClass().getName());   //输出map是什么类型数据 :BindingAwareModelMap
-        map.put("passworld","2333");
+        map.put("passworld", "2333");
         return "success";
     }
 
@@ -41,10 +51,10 @@ public class SpringmvcHandler {
     @RequestMapping("/testModelAndView")
     public ModelAndView testModelAndView() {
         //模型数据: username=Admin
-        ModelAndView mav=new ModelAndView();
+        ModelAndView mav = new ModelAndView();
 
         //添加模型数据
-        mav.addObject("username","Admin");
+        mav.addObject("username", "Admin");
 
         //设置试图信息
         mav.setViewName("success");

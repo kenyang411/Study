@@ -11,6 +11,8 @@
     <title>$Title$</title>
 </head>
 <body>
+<a href="testRedirectView">Test RedirectView</a>
+<br />
 <a href="testViewController">Test ViewController</a>
 <br />
 <a href="testView">Test View</a>

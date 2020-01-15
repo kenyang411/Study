@@ -6,7 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 1.组件扫描 -->
-<context:component-scan base-package="springmvc"></context:component-scan>
+    <context:component-scan base-package="springmvc"></context:component-scan>
 
     <!-- 2.视图解析器
            工作机制： prefix + 请求处理方法的返回值 + suffix = 物理视图路径
@@ -22,6 +22,9 @@
         <property name="order" value="100"></property>
     </bean>
 
-<mvc:view-controller path="testViewController" view-name="success"></mvc:view-controller>
-    
+    <!-- 不经过Handler直接跳转页面 -->
+    <mvc:view-controller path="testViewController" view-name="success"></mvc:view-controller>
+    <!-- 使用view-controller以后，会导致RequestMapping的映射失效，因此需要加上annotation-driven的配置 -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+
 </beans>

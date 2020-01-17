@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Spring MVC CURD</title>
   </head>
   <body>
-  $END$
+  <a href="ems">List All Emps</a>
   </body>
 </html>

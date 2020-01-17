@@ -40,5 +40,7 @@
         </tr>
     </c:forEach>
 </table>
+
+<h2 align="center"><a href="emp">Add New Emp</a></h2>
 </body>
 </html>

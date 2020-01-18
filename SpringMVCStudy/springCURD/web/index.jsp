@@ -11,6 +11,6 @@
     <title>Spring MVC CURD</title>
   </head>
   <body>
-  <a href="ems">List All Emps</a>
+  <a href="emps">List All Emps</a>
   </body>
 </html>

@@ -35,7 +35,14 @@
             <td>
                 <a href="#">Edit</a>
                 &nbsp;&nbsp;
-                <a href="#">Delete</a>
+                <!--
+                解决思路：
+                    给删除的超链接绑定事件，当触发了点击事件，可以在事件处理函数中获取到要发送的请求URL;
+                    再将获取到的请求URL设置到某个表单的action属性上，再将表单提交。
+                    最终将<a>的默认行为取消。
+                -->
+                <a href="emp/${emp.id}">Delete</a>
+
             </td>
         </tr>
     </c:forEach>

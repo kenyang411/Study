@@ -22,9 +22,32 @@
 <%--            2.在springmvc.xml中加上一个配置：<mvc:default-servlet-handler />--%>
     -->
     <script type="text/javascript" src="../../scripts/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+        //给删除<a>动态绑定事件
+        $(function () {
+            $(".del").click(function () {
+                //是否要删除
+               var flag= window.confirm("是否要删除?");
+               if(!flag){
+                   return  false;   //如果取消删除，返回false
+               }
 
+                //this：当前的dom对象
+                //获取点击的超链接的href的值
+                var href = $(this).attr("href");
+                //将href的值设置到表单的action上
+                $("form").attr("action", href).submit();
+                //取消<a>的默认行为
+                return false;
+            });
+        })
+    </script>
 </head>
 <body>
+<form action="" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+</form>
+
 <h1 align="center">员工信息列表</h1>
 <table border="1px" align="center" width="70%" cellspacing="0px">
     <tr>
@@ -36,7 +59,7 @@
         <th>Operation</th>
     </tr>
     <!-- 通过迭代模型数据，生成表格 -->
-    <c:forEach items="${emps}" var ="emp">
+    <c:forEach items="${emps}" var="emp">
         <tr align="center">
             <td>${emp.id}</td>
             <td>${emp.lastName}</td>

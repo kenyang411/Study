@@ -2,7 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 组件扫描 -->
     <context:component-scan base-package="springmvc"></context:component-scan>
@@ -12,5 +12,10 @@
         <property name="prefix" value="/WEB-INF/views/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
+
+    <!--    1.处理加载（静态文件）jquery出现 no mapping request问题；但是会导致原来的http请求报404。
+            2.如果web应用服务器默认的Servlet的名字不叫"default"，则需要通过default-servlet-name来进行指定。
+            3.配置了default-servlet-handler后，RequestMapping的映射会失效，需要加上annotation-driven的配置。
+    -->
 
 </beans>

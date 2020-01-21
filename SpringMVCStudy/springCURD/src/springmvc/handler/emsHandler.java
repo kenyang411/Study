@@ -24,6 +24,39 @@ public class emsHandler {
     private DepartmentDao departmentDao;
 
     /**
+     * 修改功能：具体的修改操作
+     */
+    @RequestMapping(value = "/emp",method = RequestMethod.PUT)
+    public String updateEmp(Employee employee){
+        employeeDao.save(employee);
+        return "redirect:/emps";
+    }
+
+    /**
+     * 修改功能：去往修改页面
+     */
+    @RequestMapping(value = "/emp/{id}", method = RequestMethod.GET)
+    public String toUpdatePage(@PathVariable("id")Integer id,Map<String,Object>map) {
+        //查询要修改的员工信息
+        Employee employee= employeeDao.get(id);
+        map.put("employee",employee);
+
+        //页面中显示部门下拉列表的数据
+        Collection<Department> depts=departmentDao.getDepartments();
+        map.put("depts",depts);
+
+        //页面中生成性别单选框的数据
+        Map<String,String> genders=new HashMap<>();
+        genders.put("0","女");
+        genders.put("1","男");
+        map.put("genders",genders);
+
+        //重定向到添加页面
+        return "input";
+    }
+
+
+    /**
      * 删除功能
      */
     @RequestMapping(value = "/emp/{id}", method = RequestMethod.DELETE)
@@ -63,7 +96,7 @@ public class emsHandler {
         map.put("genders", genders);
 
         //3.设置页面中要回显的数据
-        map.put("command", new Employee());
+        map.put("employee", new Employee());
         return "input";
     }
 
@@ -78,10 +111,6 @@ public class emsHandler {
         //回到列表页面
         return "redirect:/emps";
     }
-
-    /**
-     * 删除功能
-     */
 
 
 }

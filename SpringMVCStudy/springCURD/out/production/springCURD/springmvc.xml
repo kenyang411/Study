@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 组件扫描 -->
@@ -18,4 +19,7 @@
             3.配置了default-servlet-handler后，RequestMapping的映射会失效，需要加上annotation-driven的配置。
     -->
 
+    <mvc:default-servlet-handler/>
+    <!--    加上下面这个配置，避免上面配置导致原来HTTP请求出现404-->
+    <mvc:annotation-driven/>
 </beans>

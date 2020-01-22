@@ -47,15 +47,18 @@ public class emsHandler {
         String realPath=sc.getRealPath("uploads");
         File targetFile=new File(realPath +"/"+uploadFileName);
 
-        FileOutputStream os=new FileOutputStream(targetFile);
+//        FileOutputStream os=new FileOutputStream(targetFile);
+//
+//        //写文件
+//        int i;
+//        while ((i=in.read())!=-1){
+//            os.write(i);
+//        }
+//        in.close();
+//        os.close();
 
-        //写文件
-        int i;
-        while ((i=in.read())!=-1){
-            os.write(i);
-        }
-        in.close();
-        os.close();
+        //提供了一种方法直接保存
+        uploadFile.transferTo(targetFile);
 
         return "success";
     }

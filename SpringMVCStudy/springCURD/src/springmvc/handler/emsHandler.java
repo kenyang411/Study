@@ -1,19 +1,26 @@
 package springmvc.handler;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import springmvc.beans.Department;
 import springmvc.beans.Employee;
 import springmvc.dao.DepartmentDao;
 import springmvc.dao.EmployeeDao;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class emsHandler {
@@ -25,12 +32,62 @@ public class emsHandler {
     private DepartmentDao departmentDao;
 
     /**
+     * 文件上传
+     */
+    @RequestMapping("/upload")
+    public String testUploadFile(@RequestParam("desc") String desc,
+                                 @RequestParam("uploadFile")MultipartFile uploadFile,
+                                 HttpSession httpSession) throws IOException {
+        //获取上传文件的名字
+        String uploadFileName=uploadFile.getOriginalFilename();
+        //获取输入流
+        InputStream in=uploadFile.getInputStream();
+        //获取服务器端的uploads文件夹真实路径
+        ServletContext sc=httpSession.getServletContext();
+        String realPath=sc.getRealPath("uploads");
+        File targetFile=new File(realPath +"/"+uploadFileName);
+
+        FileOutputStream os=new FileOutputStream(targetFile);
+
+        //写文件
+        int i;
+        while ((i=in.read())!=-1){
+            os.write(i);
+        }
+        in.close();
+        os.close();
+
+        return "success";
+    }
+
+
+    /**
      * 使用HttpMessageConveter完成下载功能：
      * 支持@RequestBody @ResponseBody  HttpEntity ResponseEntity(下载)
      * 下载原理：将服务器文件以流的形式写到客户端。
      * ResponseEntity:将下载的文件数据，以及响应信息封装到ResponseEntity对象中，浏览器端通过解析发送回去的响应数据，就可以进行一个下载操作。
      */
-
+    @RequestMapping("/download")
+    public ResponseEntity<byte[]> testDownload(HttpSession session) throws IOException {
+        //将要下载的文件读取成一个字节数据
+        byte[] imgs;
+        ServletContext sc=session.getServletContext();
+        InputStream in= sc.getResourceAsStream("image/123.jpg");
+        imgs=new byte[in.available()];  //分配字节长度
+        in.read(imgs);
+        //将相应数据 以及一些响应头信息封装到ResponseEntity中
+        /**
+         * 参数：
+         *  1.发送给浏览器端的数据
+         *  2.设置响应头
+         *  3.设置响应码
+         */
+        HttpHeaders headers=new HttpHeaders();
+        headers.add("Content-Disposition","attachment;filename=123.jpg");
+        HttpStatus statusCode=HttpStatus.OK;
+        ResponseEntity<byte[]> re=new ResponseEntity<byte[]>(imgs,headers,statusCode);
+        return re;
+    }
 
     /**
      * 处理Json

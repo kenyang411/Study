@@ -22,4 +22,11 @@
     <mvc:default-servlet-handler/>
     <!--    加上下面这个配置，避免上面配置导致原来HTTP请求出现404-->
     <mvc:annotation-driven/>
+
+    <!-- 配置文件的上传,这里如果不配置id不生效 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 保证上传表单所在的Jsp页面的编码一致 -->
+        <property name="defaultEncoding" value="utf-8"></property>
+        <property name="maxUploadSize" value="10485760"></property>
+    </bean>
 </beans>

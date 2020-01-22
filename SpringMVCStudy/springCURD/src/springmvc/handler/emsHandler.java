@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import springmvc.beans.Department;
 import springmvc.beans.Employee;
 import springmvc.dao.DepartmentDao;
@@ -22,6 +23,25 @@ public class emsHandler {
 
     @Autowired
     private DepartmentDao departmentDao;
+
+    /**
+     * 使用HttpMessageConveter完成下载功能：
+     * 支持@RequestBody @ResponseBody  HttpEntity ResponseEntity(下载)
+     * 下载原理：将服务器文件以流的形式写到客户端。
+     * ResponseEntity:将下载的文件数据，以及响应信息封装到ResponseEntity对象中，浏览器端通过解析发送回去的响应数据，就可以进行一个下载操作。
+     */
+
+
+    /**
+     * 处理Json
+     * @ResponseBody注解
+     */
+    @RequestMapping(value = "/testJson")
+    @ResponseBody
+    public Collection<Employee> testJson(){
+        Collection<Employee> emps=employeeDao.getAll();
+        return emps;
+    }
 
     /**
      * 修改功能：具体的修改操作

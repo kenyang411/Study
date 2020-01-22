@@ -11,6 +11,8 @@
     <title>Spring MVC CURD</title>
   </head>
   <body>
+  <a href="testJson">Test Json </a>
+  <br />
   <a href="emps">List All Emps</a>
   </body>
 </html>

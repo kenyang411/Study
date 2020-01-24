@@ -14,6 +14,7 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
+
     <!--    1.处理加载（静态文件）jquery出现 no mapping request问题；但是会导致原来的http请求报404。
             2.如果web应用服务器默认的Servlet的名字不叫"default"，则需要通过default-servlet-name来进行指定。
             3.配置了default-servlet-handler后，RequestMapping的映射会失效，需要加上annotation-driven的配置。
